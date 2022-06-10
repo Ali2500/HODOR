@@ -63,7 +63,13 @@ $HODOR_WORKSPACE_DIR
 
 Note that we convert all annotations for COCO, DAVIS and YouTube-VOS into a somewhat standardized JSON format so that data loading code can be easily re-used.
 
-2. **Download annotations and pretrained models**: A basic setup of the above directory including dataset annotations (but not the image frames) and pretrained models can be downloaded from [HERE](https://omnomnom.vision.rwth-aachen.de/data/HODOR/everything_zipped.zip). You can also download separate files from by browsing through them from [here](https://omnomnom.vision.rwth-aachen.de/data/HODOR). 
+2. **Download annotations and pretrained models**: Links to downloadable resources are given below. For the easiest setup, download the entire zipped workspace. This includes all model checkpoints (COCO training + finetuning on sparse and dense video) as well as train/val/test annotations in JSON format for all 3 datasets (COCO, DAVIS, YouTube-VOS). Note that you'll still have to copy the dataset images to the relevant dataset in `$HODOR_WORKSPACE_DIR/dataset_images`.
+
+| Content                                                    | URLs                                                                                |
+|------------------------------------------------------------|-------------------------------------------------------------------------------------|
+| Zipped Workspace (Model Checkpoints + Dataset Annotations) | [LINK](https://omnomnom.vision.rwth-aachen.de/data/HODOR/everything_zipped.zip)     |
+| Dataset Annotations                                        | [LINK](https://omnomnom.vision.rwth-aachen.de/data/HODOR/dataset_json_annotations/) |
+| Model Checkpoints                                          | [LINK](https://omnomnom.vision.rwth-aachen.de/data/HODOR/checkpoints/)              |
 
 
 ## Inference
