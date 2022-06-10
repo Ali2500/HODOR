@@ -106,3 +106,13 @@ python -m torch.distributed.launch --nproc_per_node=8 hodor/training/main.py --m
 
 Likewise you can set `--cfg video_dense.yaml` to train with the full set of available training annotations.
 
+## Cite
+
+```
+@article{athar2021hodor,
+  title={HODOR: High-level Object Descriptors for Object Re-segmentation in Video Learned from Static Images},
+  author={Athar, Ali and Luiten, Jonathon and Hermans, Alexander and Ramanan, Deva and Leibe, Bastian},
+  journal={CVPR},
+  year={2022}
+}
+```
