@@ -109,7 +109,7 @@ Likewise you can set `--cfg video_dense.yaml` to train with the full set of avai
 ## Cite
 
 ```
-@article{athar2021hodor,
+@article{athar2022hodor,
   title={HODOR: High-level Object Descriptors for Object Re-segmentation in Video Learned from Static Images},
   author={Athar, Ali and Luiten, Jonathon and Hermans, Alexander and Ramanan, Deva and Leibe, Bastian},
   journal={CVPR},
