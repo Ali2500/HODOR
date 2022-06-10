@@ -76,7 +76,33 @@ python hodor/inference/main.py $HODOR_WORKSPACE_DIR/checkpoints/static_image/250
 
 This will create a directory called `davis_inference_output` in `$HODOR_WORKSPACE_DIR/checkpoints/static_image` and write the output masks to it. For Likewise you can point the script to the checkpoints in `video_dense` or `video_sparse` to evaluate those. 
 
-**YouTube-VOS or DAVIS testdev**: To run inference on a different dataset, set the `--dataset` argument to `davis_testdev` or `youtube_vos_val`. For detailed inference options, run the script with `--help'. Note that you may need to adjust the `--min_image_dim` and `--temporal_window` options to get the exact results mentioned in the paper for different datasets.
+**YouTube-VOS or DAVIS testdev**: To run inference on a different dataset, set the `--dataset` argument to `davis_testdev` or `youtube_vos_val`. For detailed inference options, run the script with `--help`. Note that you may need to adjust the `--min_image_dim` and/or `--temporal_window` options to get the exact results mentioned in the paper for different datasets.
 
 ## Training
+
+#### Static Images
+
+For single GPU training on static images from COCO:
+
+```
+python hodor/training/main.py --model_dir my_training_on_static_images --cfg static_image.yaml
+```
+
+For multi-GPU training (e.g. 8 GPUs) on static images from COCO:
+
+```
+python -m torch.distributed.launch --nproc_per_node=8 hodor/training/main.py --model_dir my_training_on_static_images --cfg static_image.yaml --allow_multigpu
+```
+
+The checkpoints provided above were usually trained on 4 or 8 GPUs. Note that we use gradient accumulation so it is possible to train with the default batch size of 8 even on a single GPU, but the results will not be exactly reproducible.
+
+#### Video
+
+To fine-tuning the COCO trained model on sparse video (i.e. assuming that only one frame per video is annotated in the DAVIS and YouTube-VOS training sets):
+
+```
+python -m torch.distributed.launch --nproc_per_node=8 hodor/training/main.py --model_dir my_finetuning_on_video --cfg video_sparse.yaml --allow_multigpu --restore_path /path/to/coco/trained/checkpoint.pth
+```
+
+Likewise you can set `--cfg video_dense.yaml` to train with the full set of available training annotations.
 
