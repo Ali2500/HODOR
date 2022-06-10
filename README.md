@@ -14,6 +14,7 @@ This repository contains official code for the above-mentioned publication, as w
 
 The following packages are required:
 
+- Python v3.7.10
 - PyTorch (v1.9.0)
 - Torchvision (v0.10.0)
 - Pillow
