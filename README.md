@@ -61,4 +61,22 @@ $HODOR_WORKSPACE_DIR
         - another_training_session
 ```
 
-2. **Download annotations and pretrained models**: A basic setup of the above directory including all dataset annotations and pretrained models can be downloaded from [HERE]().
+Note that we convert all annotations for COCO, DAVIS and YouTube-VOS into a somewhat standardized JSON format so that data loading code can be easily re-used.
+
+2. **Download annotations and pretrained models**: A basic setup of the above directory including dataset annotations (but not the image frames) and pretrained models can be downloaded from [HERE](https://omnomnom.vision.rwth-aachen.de/data/HODOR/everything_zipped.zip). You can also download separate files from by browsing through them from [here](https://omnomnom.vision.rwth-aachen.de/data/HODOR). 
+
+
+## Inference
+
+**DAVIS 2017 val**: Run the following from the repository base directory:
+
+```
+python hodor/inference/main.py $HODOR_WORKSPACE_DIR/checkpoints/static_image/250000.pth --dataset davis_val --output_dir davis_inference_output --temporal_window 7 --min_image_dim 512
+```
+
+This will create a directory called `davis_inference_output` in `$HODOR_WORKSPACE_DIR/checkpoints/static_image` and write the output masks to it. For Likewise you can point the script to the checkpoints in `video_dense` or `video_sparse` to evaluate those. 
+
+**YouTube-VOS or DAVIS testdev**: To run inference on a different dataset, set the `--dataset` argument to `davis_testdev` or `youtube_vos_val`. For detailed inference options, run the script with `--help'. Note that you may need to adjust the `--min_image_dim` and `--temporal_window` options to get the exact results mentioned in the paper for different datasets.
+
+## Training
+
