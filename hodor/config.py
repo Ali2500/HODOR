@@ -72,11 +72,7 @@ class YamlConfig(dict):
                 continue
 
             if key not in self:
-                if strict:
-                    self.__immutable = True
-                    raise ValueError("No option named '%s' exists in YamlConfig" % key)
-                else:
-                    unexpected_keys.append(key)
+                unexpected_keys.append(f"{self.scope}{key}")
             else:
                 value = self[key]
                 if isinstance(value, self.__class__):
@@ -85,6 +81,13 @@ class YamlConfig(dict):
                     self[key] = val
 
         self.__immutable = True
+        if strict and unexpected_keys and self.scope == "":
+            unexpected_keys_str = "- " + "\n- ".join(unexpected_keys)
+            raise ValueError(
+                f"The following keys were found in the provided opts, but do not exist in the "
+                f"config:\n{unexpected_keys_str}"
+            )
+
         return unexpected_keys
 
     def merge_from_file(self, path, strict=True):

@@ -221,9 +221,6 @@ class DenseVideoDataset(Dataset):
             last_t = len(seq) - self.num_other_frames - self.min_delta_t
 
             for t in range(last_t):
-                # if cfg.TRAINING.GT_SKIP_FRAMES > 0 and t % cfg.TRAINING.GT_SKIP_FRAMES != 0:
-                #     continue
-
                 valid_instance_ids = [iid for iid in seq.instance_ids if iid in seq.tracks[t]]
 
                 if not valid_instance_ids:
@@ -231,8 +228,6 @@ class DenseVideoDataset(Dataset):
 
                 bin_id = min(num_instances, len(valid_instance_ids))
                 samples_by_num_instance[bin_id].append((seq.id, t, valid_instance_ids))
-
-        # print("Pool size: ", sum([len(l) for l in samples_by_num_instance.values()]))
 
         train_samples = []
         train_sample_dims = []
