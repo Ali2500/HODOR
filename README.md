@@ -14,6 +14,10 @@ This repository contains official code for the above-mentioned publication, as w
 
 ![image](https://user-images.githubusercontent.com/14821941/173097679-184e4951-c0f6-4d7e-be1e-18441ff78d73.png)
 
+## Differentiable Soft-Masked Attention
+
+In case you followed the workshop paper and want to nose-dive into the implementation of our novel differentiable soft-masked attention, take a look at the PyTorch module here: [hodor/modeling/encoder/soft_masked_attention.py](https://github.com/Ali2500/HODOR/blob/443903b07fbed6dac57668c2c63a58417f82003a/hodor/modelling/encoder/soft_masked_attention.py). The API is similar to PyTorch's native `nn.MultiHeadAttention` with the main difference that the `forward` requires a soft mask for the attention to be given as input.
+
 ## Installation
 
 The following packages are required:
