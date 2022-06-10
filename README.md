@@ -1,4 +1,4 @@
-# HODOR: High-Level Object Descriptors for Object Re-segmentation in Video Learned from Static Images (CVPR 2022)
+# HODOR: High-Level Object Descriptors for Object Re-segmentation in Video Learned from Static Images (CVPR 2022 Oral)
 
 Ali Athar, Jonathon Luiten, Alexander Hermans, Deva Ramanan, Bastian Leibe
 
