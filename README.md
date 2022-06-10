@@ -8,6 +8,10 @@ This repository contains official code for the above-mentioned publication, as w
 
 ## Conceptual Overview
 
+- Idea: Can we learn to do VOS by training only on static images?
+- Unlike existing VOS methods which learn pixel-to-pixel correspondences, HODOR learns to encode object appearance information from an image frame into a concise object descriptors which can then be decoded into another video frame to "re-segment" that object.
+- We can also train using cyclic consistency on video clips where just one frame is annotated.
+
 ![image](https://user-images.githubusercontent.com/14821941/173097679-184e4951-c0f6-4d7e-be1e-18441ff78d73.png)
 
 ## Installation
