@@ -2,7 +2,7 @@
 
 Ali Athar, Jonathon Luiten, Alexander Hermans, Deva Ramanan, Bastian Leibe
 
-\[[`arXiv`](https://arxiv.org/abs/2112.09131)\] \[[`BibTex](https://github.com/Ali2500/HODOR/blob/main/README.md#cite)\] \[[`Related Workshop Paper`](https://arxiv.org/pdf/2206.00182.pdf)\]
+\[[`arXiv`](https://arxiv.org/abs/2112.09131)\] \[[`BibTex`](https://github.com/Ali2500/HODOR/blob/main/README.md#cite)\] \[[`Related Workshop Paper`](https://arxiv.org/pdf/2206.00182.pdf)\]
 
 This repository contains official code for the above-mentioned publication, as well as the related workshop paper titled 'Differentiable Soft-Maskted Attention' which was presented at the Transformers for Vision (T4V) Workshop at CVPR 2022.
 
