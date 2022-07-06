@@ -29,6 +29,7 @@ The following packages are required:
 - opencv-python
 - imgaug
 - mmcv
+- timm
 - tqdm
 - pyyaml
 - tensorboardX
