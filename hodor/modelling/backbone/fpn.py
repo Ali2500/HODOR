@@ -2,8 +2,8 @@ import warnings
 
 import torch.nn as nn
 import torch.nn.functional as F
+
 from mmcv.cnn import ConvModule, xavier_init
-from mmcv.runner import auto_fp16
 
 
 class FPN(nn.Module):
@@ -161,9 +161,8 @@ class FPN(nn.Module):
         """Initialize the weights of FPN module."""
         for m in self.modules():
             if isinstance(m, nn.Conv2d):
-                xavier_init(m, distribution='uniform')
+                xavier_init(m)
 
-    @auto_fp16()
     def forward(self, inputs):
         """Forward function."""
         assert len(inputs) == len(self.in_channels)
