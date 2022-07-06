@@ -28,6 +28,7 @@ The following packages are required:
 - Pillow
 - opencv-python
 - imgaug
+- mmcv
 - tqdm
 - pyyaml
 - tensorboardX
