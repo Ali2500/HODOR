@@ -28,6 +28,7 @@ The following packages are required:
 - Pillow
 - opencv-python
 - imgaug
+- einops
 - mmcv
 - timm
 - tqdm
