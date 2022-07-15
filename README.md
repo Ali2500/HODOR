@@ -28,7 +28,6 @@ The following packages are required:
 - Pillow
 - opencv-python
 - imgaug
-- mmcv
 - timm
 - tqdm
 - pyyaml
