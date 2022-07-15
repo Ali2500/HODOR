@@ -1,9 +1,11 @@
+# This module has been reproduced from the official implementation of Swin Transformer at:
+# `https://github.com/microsoft/Swin-Transformer` with minor modifications
+
+from collections import OrderedDict
 import warnings
 
 import torch.nn as nn
 import torch.nn.functional as F
-
-from mmcv.cnn import ConvModule, xavier_init
 
 
 class FPN(nn.Module):
@@ -115,23 +117,26 @@ class FPN(nn.Module):
         self.fpn_convs = nn.ModuleList()
 
         for i in range(self.start_level, self.backbone_end_level):
-            l_conv = ConvModule(
-                in_channels[i],
-                out_channels,
-                1,
-                conv_cfg=conv_cfg,
-                norm_cfg=norm_cfg if not self.no_norm_on_lateral else None,
-                act_cfg=act_cfg,
-                inplace=False)
-            fpn_conv = ConvModule(
-                out_channels,
-                out_channels,
-                3,
-                padding=1,
-                conv_cfg=conv_cfg,
-                norm_cfg=norm_cfg,
-                act_cfg=act_cfg,
-                inplace=False)
+            # The convolution layers were created using the 'ConvModule' API from mmcv. To remove the dependency on
+            # mmcv, we replace this with a native torch implementation which has the same parameter key in the
+            # pretrained model checkpoint.
+            l_conv = nn.Sequential(OrderedDict({
+                "conv": nn.Conv2d(in_channels[i], out_channels, 1)
+            }))
+
+            fpn_conv = nn.Sequential(OrderedDict({
+                "conv": nn.Conv2d(out_channels, out_channels, 3, padding=1)
+            }))
+
+            # fpn_conv = ConvModule(
+            #     out_channels,
+            #     out_channels,
+            #     3,
+            #     padding=1,
+            #     conv_cfg=conv_cfg,
+            #     norm_cfg=norm_cfg,
+            #     act_cfg=act_cfg,
+            #     inplace=False)
 
             self.lateral_convs.append(l_conv)
             self.fpn_convs.append(fpn_conv)
@@ -144,24 +149,18 @@ class FPN(nn.Module):
                     in_channels = self.in_channels[self.backbone_end_level - 1]
                 else:
                     in_channels = out_channels
-                extra_fpn_conv = ConvModule(
-                    in_channels,
-                    out_channels,
-                    3,
-                    stride=2,
-                    padding=1,
-                    conv_cfg=conv_cfg,
-                    norm_cfg=norm_cfg,
-                    act_cfg=act_cfg,
-                    inplace=False)
+
+                extra_fpn_conv = nn.Sequential(OrderedDict({
+                    "conv": nn.Conv2d(in_channels, out_channels, 3, stride=2, padding=1)
+                }))
                 self.fpn_convs.append(extra_fpn_conv)
 
-    # default init_weights for conv(msra) and norm in ConvModule
     def init_weights(self):
         """Initialize the weights of FPN module."""
         for m in self.modules():
             if isinstance(m, nn.Conv2d):
-                xavier_init(m)
+                nn.init.xavier_normal_(m.weight)
+                nn.init.zeros_(m.bias)
 
     def forward(self, inputs):
         """Forward function."""

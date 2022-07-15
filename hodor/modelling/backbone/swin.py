@@ -1,3 +1,5 @@
+# This module has been reproduced from the official implementation of Swin Transformer at:
+# `https://github.com/microsoft/Swin-Transformer` with minor modifications
 # --------------------------------------------------------
 # Swin Transformer
 # Copyright (c) 2021 Microsoft
@@ -15,10 +17,6 @@ import os.path as osp
 from timm.models.layers import DropPath, to_2tuple, trunc_normal_
 from hodor.modelling.backbone.fpn import FPN
 from hodor.utils.paths import Paths
-
-
-# def get_ckpt_base_path():
-#     return osp.join(os.environ["TORCH_HOME"], "checkpoints", "SwinTransformer", "ObjectDetection")
 
 
 class Mlp(nn.Module):
